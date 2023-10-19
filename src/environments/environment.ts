@@ -4,5 +4,6 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
+  apiUrl: "http://localhost:9000",  // Or using npm start command (see package.json)
   production: false
 };

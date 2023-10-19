@@ -1,0 +1,36 @@
+######################### Reactive Angular Course #########################
+
+  ► Install Nodejs, Angular
+  ► Run npm server
+  ► Run npm start (Not ng serve, since this command also passes some parameters)
+  ► First thing to do is refactor the homeComponent from Imperative programming paradigm to Reactive one
+  ► Design Pattern: Stateless Observable Service:
+    ☼ The stateless observable service is a design pattern that involves creating a service in Angular that provides
+      stateless observables to components. This design pattern is useful when you have data or events that need to be
+      observed by multiple components, but the service itself doesn't maintain any internal state.
+
+    ☼ By following this pattern, you can have a stateless observable service that provides a centralized way to observe
+      data or events across multiple components. Each component can subscribe to the observable streams provided by
+      the service and react to changes as needed, without the service itself maintaining any internal state.
+
+  ► A common convention is to add a $ suffix to a variable name, to indicate that it is an observable stream:
+      ☼ isLoaded$
+      ☼ isAuthenticated$
+
+  ► Separating the logic into this way: (Smart vs Presentational components -> Smart and Dumb Component Pattern)
+      ☼ (smart) home.component -> Access the service layer (Knows where the data comes from)
+                               -> Knows how to prepare the derived observable that the view layer needs in order to
+                                  obtain the necessary data
+      ☼ (dumb) course-card.component -> Have very little information, just about how the data should be
+                                                  displayed.Focus on rendering the UI based on input properties and
+                                                  emitting events.
+  ► Our app still full stateless because for example in the dialog if we change the title the only way to reflect the
+    change in the list of courses is reloading that list to get back the latest version of the data. Our Edit functionality
+    was done as follow:
+      ☼ Whenever the Edit window gets closed after saved successfully the edited data it is going to emit an event.
+      ☼ This event will be captured by the home.component and will execute the reload function to reflect the changes.
+
+  ► The way of communicating using @input and @output can only be used if a component is present in the template of
+    another component. So when you need to communicate with a component with a different position in the component
+    tree you rather use services instead.
+

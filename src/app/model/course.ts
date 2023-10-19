@@ -9,6 +9,7 @@ export interface Course {
   courseListIcon: string;
   category: string;
   lessonsCount: number;
+  payload: number;
 }
 
 

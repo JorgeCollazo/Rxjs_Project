@@ -1,5 +1,8 @@
 <h2 mat-dialog-title>{{course.description}}</h2>
 
+<loading></loading> <!--PLacing this here ensure that our component is using the loading instance at the component level -->
+
+<messages></messages>
 
 <mat-dialog-content [formGroup]="form">
 
@@ -15,7 +18,6 @@
 
     <mat-select placeholder="Select category"
                 formControlName="category">
-
       <mat-option value="BEGINNER">
         Beginner
       </mat-option>

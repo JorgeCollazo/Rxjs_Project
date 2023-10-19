@@ -1,27 +1,49 @@
 
-  <div class="course">
+<!--  <ng-container *ngIf="(course$ | async) as course">  &lt;!&ndash; There is a better way to avoid this multiple nested ng-containers for each Observable: Single Data Observable Pattern &ndash;&gt;-->
 
-    <h2>{{course?.description}}</h2>
+<!--    <ng-container *ngIf="(lessons$ | async) as lessons">-->
+<!--      <div class="course">-->
 
-    <img class="course-thumbnail" [src]="course?.iconUrl">
+<!--        <h2>{{course?.description}}</h2>-->
 
-    <table class="lessons-table mat-elevation-z7">
+<!--        <img class="course-thumbnail" [src]="course?.iconUrl">-->
 
-      <thead>
-      <th>#</th>
-      <th>Description</th>
-      <th>Duration</th>
-      </thead>
+<!--        <table class="lessons-table mat-elevation-z7">-->
 
-      <tr class="lesson-row" *ngFor="let lesson of lessons">
-        <td class="seqno-cell">{{lesson.seqNo}}</td>
-        <td class="description-cell">{{lesson.description}}</td>
-        <td class="duration-cell">{{lesson.duration}}</td>
-      </tr>
+<!--          <thead>-->
+<!--          <th>#</th>-->
+<!--          <th>Description</th>-->
+<!--          <th>Duration</th>-->
+<!--          </thead>-->
+<!--            <tr class="lesson-row" *ngFor="let lesson of lessons">-->
+<!--              <td class="seqno-cell">{{lesson.seqNo}}</td>-->
+<!--              <td class="description-cell">{{lesson.description}}</td>-->
+<!--              <td class="duration-cell">{{lesson.duration}}</td>-->
+<!--            </tr>-->
+<!--        </table>-->
+<!--      </div>-->
+<!--    </ng-container>-->
+<!--  </ng-container>-->
 
-    </table>
 
-  </div>
+<ng-container *ngIf="(data$ | async) as data">  <!-- Applying the Single Data Observable Pattern -->
+    <div class="course">
+      <h2>{{data.course?.description}}</h2>
+      <img class="course-thumbnail" [src]="data.course?.iconUrl" *ngIf="data.course">
+      <table class="lessons-table mat-elevation-z7" *ngIf="data.lessons.length">
+        <thead>
+        <th>#</th>
+        <th>Description</th>
+        <th>Duration</th>
+        </thead>
+        <tr class="lesson-row" *ngFor="let lesson of data.lessons">
+          <td class="seqno-cell">{{lesson.seqNo}}</td>
+          <td class="description-cell">{{lesson.description}}</td>
+          <td class="duration-cell">{{lesson.duration}}</td>
+        </tr>
+      </table>
+    </div>
+</ng-container>
 
 
 

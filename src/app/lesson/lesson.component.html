@@ -1,1 +1,5 @@
-<p>lesson works!</p>
+<div class="lesson-datail">
+  <h3>{{lesson.description}}</h3>
+  <h5>{{lesson.duration}}</h5>
+  <iframe src="('https://www.youtube.com/embed/' + lesson?.videoId)  | safeURL" frameborder="0" width="400" height="220" allowfullscreen></iframe>
+</div>
